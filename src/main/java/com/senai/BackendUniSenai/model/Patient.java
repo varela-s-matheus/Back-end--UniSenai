@@ -1,19 +1,20 @@
 package com.senai.BackendUniSenai.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.Date;
 
 @Entity
 @Data
 @Table(name = "patient")
 public class Patient {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private char sexo;
-    private String data_nascimento;
+    private Date data_nascimento;
     private String cpf;
     private String rg;
     private String nome_mae;
@@ -21,6 +22,7 @@ public class Patient {
     private String telefone;
     private String email;
     private String cep;
+    private String endereco;
     private int numero;
     private String bairro;
     private String cidade;
@@ -29,7 +31,9 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(int id, String nome, char sexo, String data_nascimento, String cpf, String rg, String nome_mae, String nome_social, String telefone, String email, String cep, int numero, String bairro, String cidade, String uf) {
+    public Patient(int id, String nome, char sexo, Date data_nascimento, String cpf, String rg, String nome_mae,
+                   String nome_social, String telefone, String email, String cep, String endereco, int numero,
+                   String bairro, String cidade, String uf) {
         this.id = id;
         this.nome = nome;
         this.sexo = sexo;
@@ -41,6 +45,7 @@ public class Patient {
         this.telefone = telefone;
         this.email = email;
         this.cep = cep;
+        this.endereco = endereco;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
