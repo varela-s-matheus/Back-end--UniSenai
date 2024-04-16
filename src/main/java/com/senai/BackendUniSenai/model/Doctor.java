@@ -14,7 +14,7 @@ public class Doctor {
     private char sex;
     private String crm_advice;
     private String crm_number;
-    private String crm_uf;
+    private String crm_province;
     private String cpf;
     private String phone;
     private String email;
