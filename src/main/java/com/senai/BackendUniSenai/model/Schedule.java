@@ -3,7 +3,6 @@ package com.senai.BackendUniSenai.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -11,7 +10,6 @@ import java.util.Date;
 @Data
 @Table(name = "schedule")
 public class Schedule {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -20,5 +18,6 @@ public class Schedule {
     private Date schedule_date;
     private LocalTime initial_time;
     private LocalTime final_time;
+    private ServiceType service_type;
     private boolean send_alert;
 }
