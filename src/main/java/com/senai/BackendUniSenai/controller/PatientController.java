@@ -3,12 +3,11 @@ package com.senai.BackendUniSenai.controller;
 import com.senai.BackendUniSenai.model.Patient;
 import com.senai.BackendUniSenai.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -19,18 +18,18 @@ public class PatientController {
     private PatientService patientService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> findPatientById(@PathVariable int id) {
-        return ResponseEntity.ok(patientService.findPatientById(id));
+    public ResponseEntity<Optional<Patient>> findPatientById(@PathVariable int id) {
+        return patientService.findPatientById(id);
     }
 
     @GetMapping
     public ResponseEntity<List<Patient>> findAllPatients() {
-        return ResponseEntity.ok(patientService.findAllPatients());
+        return patientService.findAllPatients();
     }
 
     @PostMapping
     public ResponseEntity<Patient> add(@RequestBody Patient patient) {
-        return ResponseEntity.ok(patientService.add(patient));
+        return patientService.add(patient);
     }
 
     @PutMapping("/{id}")

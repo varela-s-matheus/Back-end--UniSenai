@@ -6,32 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
 
-    public Patient findPatientById(int id) {
-        return patientRepository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Hóspede não encontrado no banco de dados."
-                ));
-    }
-
-    public List<Patient> findAllPatients() {
-        return patientRepository.findAll();
-    }
-
-    public Patient add(Patient patient) {
+    public ResponseEntity<Optional<Patient>> findPatientById(int id) {
         try {
-            return patientRepository.saveAndFlush(patient);
+            Optional<Patient> patient = patientRepository.findById(id);
+
+            if (patient.isPresent()) {
+                return ResponseEntity.ok(patient);
+            } throw new RuntimeException();
+        } catch(RuntimeException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado no banco de dados. " + e);
+        }
+    }
+
+    public ResponseEntity<List<Patient>> findAllPatients() {
+        return ResponseEntity.ok(patientRepository.findAll());
+    }
+
+    public ResponseEntity<Patient> add(Patient patient) {
+        try {
+            return ResponseEntity.ok(patientRepository.saveAndFlush(patient));
         } catch(RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
@@ -41,7 +44,6 @@ public class PatientService {
         if (!patientRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado no banco de dados.");
         }
-
         patient.setId(id);
 
         try {
