@@ -12,10 +12,16 @@ public class DoctorSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int doctor_id;
+
     private int day_of_week;
+
     private LocalTime start_time_first_period;
+
     private LocalTime end_time_first_period;
+
     private LocalTime start_time_second_period;
+
     private LocalTime end_time_second_period;
 }

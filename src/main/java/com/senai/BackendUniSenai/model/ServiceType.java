@@ -1,8 +1,12 @@
 package com.senai.BackendUniSenai.model;
 
 public enum ServiceType {
-    Consulta,
-    Exame,
-    Retorno,
-    Cirurgia
+
+    CONSULT("Consulta"),
+    EXAM("Exame"),
+    RETURN("Retorno"),
+    SURGERY("Cirurgia");
+
+    ServiceType(String description) { }
+
 }

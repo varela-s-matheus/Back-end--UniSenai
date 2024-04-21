@@ -10,7 +10,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private char user_type;
+
     private int register_id;
+
     private String password;
 }
