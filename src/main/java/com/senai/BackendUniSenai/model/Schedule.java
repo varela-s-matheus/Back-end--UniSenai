@@ -18,6 +18,7 @@ public class Schedule {
     private Date schedule_date;
     private LocalTime initial_time;
     private LocalTime final_time;
+    @Enumerated(EnumType.STRING)
     private ServiceType service_type;
     private boolean send_alert;
 }
