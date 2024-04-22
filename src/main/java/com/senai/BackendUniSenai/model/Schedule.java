@@ -16,7 +16,7 @@ public class Schedule {
 
     private int doctor_id;
 
-    private int schedule_id;
+    private int patient_id;
 
     private Date schedule_date;
 
