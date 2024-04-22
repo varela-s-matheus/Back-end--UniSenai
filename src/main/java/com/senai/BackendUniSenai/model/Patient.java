@@ -34,7 +34,7 @@ public class Patient {
 
     private String email;
 
-    @Column(length = 8)
+    @Column(length = 9)
     private String cep;
 
     private String address;
