@@ -6,11 +6,10 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    private static final String DRIVER = "org.mysql.Driver";
-    private static final String URL = "jdbc:mysql:/mysql-3713c38-estudante-b32f.e.aivencloud.com:10268/defaultdb?ssl-mode=REQUIRED";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://mysql-3713c38-estudante-b32f.e.aivencloud.com:10268/defaultdb?ssl-mode=REQUIRED";
     private static final String USER = "avnadmin";
     private static final String PASSWORD = "AVNS_uTgu5hnEEUblC5UMwFT";
-
 
     public static Connection getConnection() throws SQLException {
 
