@@ -6,12 +6,11 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    private static final String DRIVER = "org.postgresql.Driver";
-    private static final String URL = "jdbc:postgresql://localhost:5432/Back-end--UniSenai";
-    private static final String USER = "admin";
-    private static final String PASSWORD = "admin123";
+    private static final String DRIVER = "org.mysql.Driver";
+    private static final String URL = "jdbc:mysql:/mysql-3713c38-estudante-b32f.e.aivencloud.com:10268/defaultdb?ssl-mode=REQUIRED";
+    private static final String USER = "avnadmin";
+    private static final String PASSWORD = "AVNS_uTgu5hnEEUblC5UMwFT";
 
-    //mysql://avnadmin:AVNS_uTgu5hnEEUblC5UMwFT@mysql-3713c38-estudante-b32f.e.aivencloud.com:10268/defaultdb?ssl-mode=REQUIRED
 
     public static Connection getConnection() throws SQLException {
 
