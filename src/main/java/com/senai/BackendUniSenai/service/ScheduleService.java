@@ -46,6 +46,11 @@ public class ScheduleService {
 
     public ResponseEntity<Schedule> add(Schedule schedule) {
         try {
+
+            if (scheduleRepository.checkIfHasScheduleRegister(schedule.getDoctor_id(), schedule.getSchedule_date(), schedule.getInitial_time())) {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "Já existe um agendamento para o horário selecionado");
+            }
+
             return ResponseEntity.ok(scheduleRepository.saveAndFlush(schedule));
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
