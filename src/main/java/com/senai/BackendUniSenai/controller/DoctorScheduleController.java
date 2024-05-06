@@ -1,7 +1,7 @@
 package com.senai.BackendUniSenai.controller;
 
-import com.senai.BackendUniSenai.model.Patient;
-import com.senai.BackendUniSenai.service.PatientService;
+import com.senai.BackendUniSenai.model.DoctorSchedule;
+import com.senai.BackendUniSenai.service.DoctorScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,30 +15,30 @@ import java.util.Optional;
 public class DoctorScheduleController {
 
     @Autowired
-    private PatientService patientService;
+    private DoctorScheduleService doctorScheduleService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Patient>> findPatientById(@PathVariable int id) {
-        return patientService.findPatientById(id);
+    public ResponseEntity<Optional<DoctorSchedule>> findDoctorScheduleById(@PathVariable int id) {
+        return doctorScheduleService.findDoctorScheduleById(id);
     }
 
     @GetMapping
-    public ResponseEntity<List<Patient>> findAllPatients() {
-        return patientService.findAllPatients();
+    public ResponseEntity<List<DoctorSchedule>> findAllDoctorSchedules() {
+        return doctorScheduleService.findAllDoctorSchedules();
     }
 
     @PostMapping
-    public ResponseEntity<Patient> add(@RequestBody Patient patient) {
-        return patientService.add(patient);
+    public ResponseEntity<DoctorSchedule> add(@RequestBody DoctorSchedule doctorSchedule) {
+        return doctorScheduleService.add(doctorSchedule);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Patient> update(@PathVariable int id, @RequestBody Patient patient) {
-        return patientService.update(id, patient);
+    public ResponseEntity<DoctorSchedule> update(@PathVariable int id, @RequestBody DoctorSchedule doctorSchedule) {
+        return doctorScheduleService.update(id, doctorSchedule);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Patient> delete(@PathVariable int id) {
-        return patientService.delete(id);
+    public ResponseEntity<DoctorSchedule> delete(@PathVariable int id) {
+        return doctorScheduleService.delete(id);
     }
 }
