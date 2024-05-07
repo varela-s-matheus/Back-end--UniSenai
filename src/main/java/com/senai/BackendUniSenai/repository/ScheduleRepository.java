@@ -23,7 +23,7 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
             "where doctor_id = :doctor_id and schedule_date = :date", nativeQuery = true)
     List<Schedule> getSchedulesByDoctorIdAndDate(@Param("doctor_id") int doctor_id, @Param("date") String date);
 
-    @Query(value = "select id from schedule " +
-            "where doctor_id = :doctor_id and schedule_date = :date and initial_time = :initial_time", nativeQuery = true)
-    boolean checkIfHasScheduleRegister(@Param("doctor_id") int doctor_id, @Param("date") Date date, @Param("initial_time") LocalTime initial_time);
+    @Query(value = "select exists (select id from schedule " +
+            "where doctor_id = :doctor_id and schedule_date = :date and initial_time = :initial_time)", nativeQuery = true)
+    int checkIfHasScheduleRegister(@Param("doctor_id") int doctor_id, @Param("date") Date date, @Param("initial_time") LocalTime initial_time);
 }
