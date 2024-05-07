@@ -16,4 +16,13 @@ public class User {
     private int register_id;
 
     private String password;
+
+    @Transient
+    private String email;
+
+    public User(int register_id, String password, char user_type) {
+        this.setRegister_id(register_id);
+        this.setPassword(password);
+        this.setUser_type(user_type);
+    }
 }

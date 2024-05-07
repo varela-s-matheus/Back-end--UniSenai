@@ -27,11 +27,6 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-    @PostMapping
-    public ResponseEntity<User> add(@RequestBody User user) {
-        return userService.add(user);
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable int id, @RequestBody User user) {
         return userService.update(id, user);
@@ -41,4 +36,10 @@ public class UserController {
     public ResponseEntity<User> delete(@PathVariable int id) {
         return userService.delete(id);
     }
+
+    @PostMapping
+    public ResponseEntity verifyLogin(@RequestBody User user) {
+        return userService.verifyLogin(user.getEmail(), user.getPassword(), user.getUser_type());
+    }
+
 }

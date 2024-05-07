@@ -33,8 +33,9 @@ public class UserService {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
-    public ResponseEntity<User> add(User user) {
+    public ResponseEntity<User> add(int idUser, String password, char typeUser) {
         try {
+            User user = new User(idUser, password, typeUser);
             return ResponseEntity.ok(userRepository.saveAndFlush(user));
         } catch(RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -63,6 +64,19 @@ public class UserService {
         try {
             userRepository.deleteById(id);
             return ResponseEntity.ok().build();
+        } catch(RuntimeException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
+    public ResponseEntity verifyLogin(String email, String password, char userType) {
+        try {
+            int response = userRepository.verifyUser(email, password, userType);
+            if (response == 1) {
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.notFound().build();
+            }
         } catch(RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }

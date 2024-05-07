@@ -34,4 +34,7 @@ public class Doctor {
 
     @Column(length = 10)
     private String cbo;
+
+    @Transient
+    private String password;
 }

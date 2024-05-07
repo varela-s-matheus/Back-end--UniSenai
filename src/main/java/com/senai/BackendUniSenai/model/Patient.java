@@ -47,4 +47,7 @@ public class Patient {
 
     @Column(length = 2)
     private String province;
+
+    @Transient
+    private String password;
 }

@@ -16,6 +16,9 @@ public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    private UserService userService;
+
     public ResponseEntity<Optional<Patient>> findPatientById(int id) {
         try {
             Optional<Patient> patient = patientRepository.findById(id);
@@ -34,7 +37,9 @@ public class PatientService {
 
     public ResponseEntity<Patient> add(Patient patient) {
         try {
-            return ResponseEntity.ok(patientRepository.saveAndFlush(patient));
+            Patient savedPatient = patientRepository.saveAndFlush(patient);
+            userService.add(savedPatient.getId(), savedPatient.getPassword(), 'p');
+            return ResponseEntity.ok(savedPatient);
         } catch(RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
