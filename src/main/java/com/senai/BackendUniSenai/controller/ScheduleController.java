@@ -26,7 +26,7 @@ public class ScheduleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Schedule>> findAllSchedules() {
+    public ResponseEntity<List<ScheduleService.ScheduleList>> findAllSchedules() {
         return scheduleService.findAllSchedules();
     }
 

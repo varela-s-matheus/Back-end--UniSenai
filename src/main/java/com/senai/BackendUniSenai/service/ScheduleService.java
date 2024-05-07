@@ -1,14 +1,9 @@
 package com.senai.BackendUniSenai.service;
 
-import com.senai.BackendUniSenai.model.Doctor;
-import com.senai.BackendUniSenai.model.DoctorSchedule;
-import com.senai.BackendUniSenai.model.Schedule;
+import com.senai.BackendUniSenai.model.*;
 import com.senai.BackendUniSenai.repository.DoctorScheduleRepository;
 import com.senai.BackendUniSenai.repository.ScheduleRepository;
-import com.senai.BackendUniSenai.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -40,14 +35,15 @@ public class ScheduleService {
         }
     }
 
-    public ResponseEntity<List<Schedule>> findAllSchedules() {
-        return ResponseEntity.ok(scheduleRepository.findAll());
+    public ResponseEntity<List<ScheduleService.ScheduleList>> findAllSchedules() {
+        List<ScheduleList> schedulesList = scheduleRepository.getAllSchedules();
+        return ResponseEntity.ok(schedulesList);
     }
 
     public ResponseEntity<Schedule> add(Schedule schedule) {
         try {
 
-            if (scheduleRepository.checkIfHasScheduleRegister(schedule.getDoctor_id(), schedule.getSchedule_date(), schedule.getInitial_time())) {
+            if (scheduleRepository.checkIfHasScheduleRegister(schedule.getDoctor_id(), schedule.getSchedule_date(), schedule.getInitial_time()) == 1) {
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "Já existe um agendamento para o horário selecionado");
             }
 
@@ -128,6 +124,22 @@ public class ScheduleService {
         int getId();
 
         String getName();
+    }
+
+    public interface ScheduleList {
+        int getId();
+
+        Date getSchedule_date();
+
+        LocalTime getInitial_time();
+
+        LocalTime getFinal_time();
+
+        String getService_type();
+
+        String getDoctor_name();
+
+        String getPatient_name();
     }
 
 }
