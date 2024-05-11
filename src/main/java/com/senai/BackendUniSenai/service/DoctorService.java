@@ -65,6 +65,7 @@ public class DoctorService {
         }
 
         try {
+            userService.delete(id);
             doctorRepository.deleteById(id);
             return ResponseEntity.ok().build();
         } catch(RuntimeException e) {
