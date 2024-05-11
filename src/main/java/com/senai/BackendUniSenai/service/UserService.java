@@ -35,7 +35,8 @@ public class UserService {
 
     public ResponseEntity<User> add(int idUser, String password, char typeUser) {
         try {
-            User user = new User(idUser, password, typeUser);
+            User user = new User();
+            user.addUser(idUser, password, typeUser);
             return ResponseEntity.ok(userRepository.saveAndFlush(user));
         } catch(RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());

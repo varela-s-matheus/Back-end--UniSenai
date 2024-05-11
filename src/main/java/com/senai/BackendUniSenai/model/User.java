@@ -1,5 +1,6 @@
 package com.senai.BackendUniSenai.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,10 +18,11 @@ public class User {
 
     private String password;
 
+    @JsonBackReference
     @Transient
     private String email;
 
-    public User(int register_id, String password, char user_type) {
+    public void addUser(int register_id, String password, char user_type) {
         this.setRegister_id(register_id);
         this.setPassword(password);
         this.setUser_type(user_type);
