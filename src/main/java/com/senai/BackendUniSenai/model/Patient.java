@@ -1,5 +1,6 @@
 package com.senai.BackendUniSenai.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -48,6 +49,7 @@ public class Patient {
     @Column(length = 2)
     private String province;
 
+    @JsonBackReference
     @Transient
     private String password;
 }

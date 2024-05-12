@@ -14,7 +14,8 @@ public class User {
 
     private char user_type;
 
-    private int register_id;
+    @Column(name = "register_id")
+    private int registerId;
 
     private String password;
 
@@ -23,7 +24,7 @@ public class User {
     private String email;
 
     public void addUser(int register_id, String password, char user_type) {
-        this.setRegister_id(register_id);
+        this.setRegisterId(register_id);
         this.setPassword(password);
         this.setUser_type(user_type);
     }

@@ -2,7 +2,6 @@ package com.senai.BackendUniSenai.service;
 
 import com.senai.BackendUniSenai.model.User;
 import com.senai.BackendUniSenai.repository.UserRepository;
-import com.senai.BackendUniSenai.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,13 +56,14 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<User> delete(int id){
-        if (!userRepository.existsById(id)) {
+    public ResponseEntity<User> deleteByRegisterId(int id){
+        if (!userRepository.existsByRegisterId(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado no banco de dados.");
         }
 
         try {
-            userRepository.deleteById(id);
+            User user = userRepository.findByRegisterId(id);
+            userRepository.deleteById(user.getId());
             return ResponseEntity.ok().build();
         } catch(RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());

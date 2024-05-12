@@ -1,5 +1,6 @@
 package com.senai.BackendUniSenai.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -35,6 +36,7 @@ public class Doctor {
     @Column(length = 10)
     private String cbo;
 
+    @JsonBackReference
     @Transient
     private String password;
 }
