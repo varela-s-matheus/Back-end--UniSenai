@@ -11,7 +11,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT EXISTS (SELECT 1\n" +
             "FROM user u\n" +
             "left join patient p on (p.id = u.register_id and :user_type = 'p')\n" +
-            "left join doctor d on (d.id = u.register_id and :user_type = 'm')\n" +
+            "left join doctor d on (d.id = u.register_id and :user_type = 'd')\n" +
             "WHERE (p.email = :email or d.email = :email)\n" +
             "and u.password = :password);", nativeQuery = true)
     public int verifyUser(String email, String password, char user_type);
