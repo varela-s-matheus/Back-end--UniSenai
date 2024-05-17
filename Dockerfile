@@ -11,10 +11,12 @@ COPY . .
 
 RUN mvn clean install
 
+RUN ls -l /target
+
 FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
 
-COPY --from=build /target/artifacts/Back_end__UniSenai_jar/Back-end--UniSenai.jar app.jar
+COPY --from=build ./target/artifacts/Back_end__UniSenai_jar/Back-end--UniSenai.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
