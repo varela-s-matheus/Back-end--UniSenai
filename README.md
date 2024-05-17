@@ -19,7 +19,19 @@ Indicado utilização da IDE IntelliJ Community Edition
 * Configurar a SDK File> Project Structure > Project Settings > Project
 * Navegue até o arquivo BackEndUniSenaiApplication.java e na IDE pode ir no Ícone superior direito para rodar a aplicação
 
-## End-Points - Em andamento
+## End-Points
+
+### USER:
+
+POST /user -- verifyLogin: Dados de login devem ser encaminhados no corpo da requisição:
+``` 
+{
+  "user_type": "d",
+  "email": "jao@gmail.com",
+  "password": "1234"
+}
+```
+OBS: Os tipos de usuários disponíveis são "p" = Paciente e "d" = Médico.
 
 ### DOCTOR:
 
