@@ -1,4 +1,4 @@
-FROM ubuntu:lastest AS build
+FROM ubuntu:24.04 AS build
 
 RUN apt-get update
 RUN apt-get install openjdk-18-jdk -y
