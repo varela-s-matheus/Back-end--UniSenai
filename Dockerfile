@@ -1,11 +1,13 @@
 FROM ubuntu:24.04 AS build
 
-RUN apt-get update
-RUN apt-get install openjdk-18-jdk -y
+RUN apt-get update && \
+    apt-get install -y openjdk-18-jdk maven && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY . .
 
-RUN apt-get install maven -y
-RUN mvm clean install
+RUN mvn clean install
 
 FROM openjdk:18-jdk-slim
 
