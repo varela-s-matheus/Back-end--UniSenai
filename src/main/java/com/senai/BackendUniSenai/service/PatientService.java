@@ -25,8 +25,9 @@ public class PatientService {
 
             if (patient.isPresent()) {
                 return ResponseEntity.ok(patient);
-            } throw new RuntimeException();
-        } catch(RuntimeException e) {
+            }
+            throw new RuntimeException();
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado no banco de dados. " + e);
         }
     }
@@ -37,10 +38,15 @@ public class PatientService {
 
     public ResponseEntity<Patient> add(Patient patient) {
         try {
+            int response = patientRepository.checkIfHasPatientWithSameCpf(patient.getCpf());
+            if (response == 1) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Paciente já cadastrado com o CPF informado");
+            }
+
             Patient savedPatient = patientRepository.saveAndFlush(patient);
             userService.add(savedPatient.getId(), savedPatient.getPassword(), 'p');
             return ResponseEntity.ok(savedPatient);
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
@@ -54,12 +60,12 @@ public class PatientService {
         try {
             final Patient updatePatient = patientRepository.save(patient);
             return ResponseEntity.ok(updatePatient);
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
-    public ResponseEntity<Patient> delete(int id){
+    public ResponseEntity<Patient> delete(int id) {
         if (!patientRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado no banco de dados.");
         }
@@ -68,7 +74,7 @@ public class PatientService {
             userService.deleteByRegisterId(id);
             patientRepository.deleteById(id);
             return ResponseEntity.ok().build();
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }

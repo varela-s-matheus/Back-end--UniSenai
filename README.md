@@ -188,7 +188,7 @@ POST /schedule -- createSchedule: Dados no corpo da requisição - Ex:
 }
 ```
 
-PUT /schedule/id -- updatePatient: Dados no corpo da requisição - Ex:
+PUT /schedule/id -- updateSchedule: Dados no corpo da requisição - Ex:
 ```
 {
     "id": 1,
@@ -202,6 +202,6 @@ PUT /schedule/id -- updatePatient: Dados no corpo da requisição - Ex:
 }
 ```
 
-DELETE /schedule/id -- deletePatient
+DELETE /schedule/id -- deleteSchedule
 
 

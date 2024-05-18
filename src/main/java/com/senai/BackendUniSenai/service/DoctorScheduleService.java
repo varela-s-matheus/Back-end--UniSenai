@@ -22,8 +22,9 @@ public class DoctorScheduleService {
 
             if (doctorSchedule.isPresent()) {
                 return ResponseEntity.ok(doctorSchedule);
-            } throw new RuntimeException();
-        } catch(RuntimeException e) {
+            }
+            throw new RuntimeException();
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Dados da agenda não encontrados no banco de dados. " + e);
         }
     }
@@ -35,7 +36,7 @@ public class DoctorScheduleService {
     public ResponseEntity<DoctorSchedule> add(DoctorSchedule doctorSchedule) {
         try {
             return ResponseEntity.ok(doctorScheduleRepository.saveAndFlush(doctorSchedule));
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
@@ -49,12 +50,12 @@ public class DoctorScheduleService {
         try {
             final DoctorSchedule updateDoctorSchedule = doctorScheduleRepository.save(doctorSchedule);
             return ResponseEntity.ok(updateDoctorSchedule);
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
-    public ResponseEntity<DoctorSchedule> delete(int id){
+    public ResponseEntity<DoctorSchedule> delete(int id) {
         if (!doctorScheduleRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Dados da agenda não encontrados no banco de dados.");
         }
@@ -62,7 +63,7 @@ public class DoctorScheduleService {
         try {
             doctorScheduleRepository.deleteById(id);
             return ResponseEntity.ok().build();
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }

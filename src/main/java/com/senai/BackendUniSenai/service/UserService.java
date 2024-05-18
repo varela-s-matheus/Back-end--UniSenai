@@ -22,9 +22,10 @@ public class UserService {
 
             if (user.isPresent()) {
                 return ResponseEntity.ok(user);
-            } throw new RuntimeException();
-        } catch(RuntimeException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado no banco de dados. " + e);
+            }
+            throw new RuntimeException();
+        } catch (RuntimeException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado no banco de dados. " + e);
         }
     }
 
@@ -37,35 +38,34 @@ public class UserService {
             User user = new User();
             user.addUser(idUser, password, typeUser);
             return ResponseEntity.ok(userRepository.saveAndFlush(user));
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
     public ResponseEntity<User> update(int id, User user) {
         if (!userRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado no banco de dados.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado no banco de dados.");
         }
         user.setId(id);
 
         try {
             final User updateUser = userRepository.save(user);
             return ResponseEntity.ok(updateUser);
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
-    public ResponseEntity<User> deleteByRegisterId(int id){
-        if (!userRepository.existsByRegisterId(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado no banco de dados.");
+    public ResponseEntity<User> deleteByRegisterId(int id) {
+        if (!userRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado no banco de dados.");
         }
 
         try {
-            User user = userRepository.findByRegisterId(id);
-            userRepository.deleteById(user.getId());
+            userRepository.deleteById(id);
             return ResponseEntity.ok().build();
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
@@ -76,9 +76,9 @@ public class UserService {
             if (response == 1) {
                 return ResponseEntity.ok().build();
             } else {
-                return ResponseEntity.notFound().build();
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "E-mail ou senha inválidos");
             }
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }

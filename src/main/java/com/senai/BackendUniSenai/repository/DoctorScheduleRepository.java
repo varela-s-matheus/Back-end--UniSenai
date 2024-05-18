@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface DoctorScheduleRepository extends JpaRepository<DoctorSchedule, Integer> {
 
     @Query(value = "SELECT * from doctor_schedule " +
-                   "where doctor_id = :doctor_id and day_of_week = DAYOFWEEK(:date)", nativeQuery = true)
+            "where doctor_id = :doctor_id and day_of_week = DAYOFWEEK(:date)", nativeQuery = true)
     public DoctorSchedule findDoctorScheduleByDayOfWeek(@Param("doctor_id") int doctor_id, @Param("date") String date);
 }

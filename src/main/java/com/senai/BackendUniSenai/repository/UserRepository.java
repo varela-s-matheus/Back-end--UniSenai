@@ -15,7 +15,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "WHERE (p.email = :email or d.email = :email)\n" +
             "and u.password = :password);", nativeQuery = true)
     public int verifyUser(String email, String password, char user_type);
-
-    public boolean existsByRegisterId(int id);
-    public User findByRegisterId(int id);
 }

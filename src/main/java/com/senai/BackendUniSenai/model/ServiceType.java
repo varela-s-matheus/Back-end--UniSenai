@@ -7,6 +7,7 @@ public enum ServiceType {
     RETURN("Retorno"),
     SURGERY("Cirurgia");
 
-    ServiceType(String description) { }
+    ServiceType(String description) {
+    }
 
 }
