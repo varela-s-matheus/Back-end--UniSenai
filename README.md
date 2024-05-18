@@ -21,6 +21,9 @@ Indicado utilização da IDE IntelliJ Community Edition
 
 ## End-Points
 
+Endereço do projeto feito deploy:
+https://back-end-unisenai.onrender.com/
+
 ### USER:
 
 POST /user -- verifyLogin: Dados de login devem ser encaminhados no corpo da requisição:
