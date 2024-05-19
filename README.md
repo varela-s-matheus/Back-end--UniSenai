@@ -178,13 +178,13 @@ GET /schedule/id -- findScheduleById
 POST /schedule -- createSchedule: Dados no corpo da requisição - Ex: 
 ```
 {
-    "doctor_id": 1,
-    "patient_id": 1,
-    "schedule_date": "2024-05-07",
-    "initial_time": "12:00",
-    "final_time": "13:30",
-    "service_type": "RETURN",
-    "send_alert": true
+    "doctor_id": 33,
+    "patient_id": 20,
+    "schedule_date": "2024-05-10T03:00:00.000+00:00",
+    "initial_time": "13:00:00",
+    "final_time": "13:30:00",
+    "service_type": "EXAM",
+    "send_alert": true
 }
 ```
 
@@ -192,13 +192,13 @@ PUT /schedule/id -- updateSchedule: Dados no corpo da requisição - Ex:
 ```
 {
     "id": 1,
-    "doctor_id": 1,
-    "patient_id": 1,
-    "schedule_date": "2024-05-07",
-    "initial_time": "12:00",
-    "final_time": "12:30",
-    "service_type": "RETURN",
-    "send_alert": true
+    "doctor_id": 33,
+    "patient_id": 20,
+    "schedule_date": "2024-05-10T03:00:00.000+00:00",
+    "initial_time": "13:00:00",
+    "final_time": "13:30:00",
+    "service_type": "EXAM",
+    "send_alert": true
 }
 ```
 
