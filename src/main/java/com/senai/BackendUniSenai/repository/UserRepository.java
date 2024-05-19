@@ -15,4 +15,20 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "WHERE (p.email = :email or d.email = :email)\n" +
             "and u.password = :password);", nativeQuery = true)
     public int verifyUser(String email, String password, char user_type);
+
+    /**
+     * verifica a existência de um usuário pelo id de médico ou paciente, usando mapeamento pela JPA
+     *
+     * @param id O id do médico ou paciente
+     * @return Retorna o usuário com o id informado
+     * */
+    public boolean existsByRegisterId(int id);
+
+    /**
+     * Busca usuário pelo id de médico ou paciente, usando mapeamento pela JPA
+     *
+     * @param id O id do médico ou paciente
+     * @return Retorna o usuário com o id informado
+     * */
+    public User findByRegisterId(int id);
 }

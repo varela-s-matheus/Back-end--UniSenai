@@ -58,11 +58,12 @@ public class UserService {
     }
 
     public ResponseEntity<User> deleteByRegisterId(int id) {
-        if (!userRepository.existsById(id)) {
+        if (!userRepository.existsByRegisterId(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado no banco de dados.");
         }
 
         try {
+            User user = userRepository.findByRegisterId(id);
             userRepository.deleteById(id);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
