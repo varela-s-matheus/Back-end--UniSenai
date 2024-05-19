@@ -1,6 +1,7 @@
 # Backend da Aplicação Unisenai - Matéria de sistemas distribuídos.
 
 ## Tecnologias Utilizadas
+
 Projeto construido utilizando Java com framework SpringBoot e SpringData JPA para realizar a comunicação com o Banco de dados relacional, sendo o MySQL.
 
 ### Padrão do Projeto
