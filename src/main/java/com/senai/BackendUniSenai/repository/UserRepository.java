@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @param id O id do médico ou paciente
      * @return Retorna o usuário com o id informado
      * */
-    public boolean existsByRegisterId(int id);
+    public boolean existsByRegisterIdAndUserType(int id, char userType);
 
     /**
      * Busca usuário pelo id de médico ou paciente, usando mapeamento pela JPA
@@ -30,5 +30,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @param id O id do médico ou paciente
      * @return Retorna o usuário com o id informado
      * */
-    public User findByRegisterId(int id);
+    public User findByRegisterIdAndUserType(int id, char userType);
 }

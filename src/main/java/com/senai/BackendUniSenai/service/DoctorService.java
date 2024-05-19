@@ -38,9 +38,11 @@ public class DoctorService {
 
     public ResponseEntity<Doctor> add(Doctor doctor) {
         try {
-            Doctor savedDoctor = doctorRepository.saveAndFlush(doctor);
-            userService.add(savedDoctor.getId(), savedDoctor.getPassword(), 'd');
-            return ResponseEntity.ok(savedDoctor);
+            if (doctor.getPassword() != null) {
+                Doctor savedDoctor = doctorRepository.saveAndFlush(doctor);
+                userService.add(savedDoctor.getId(), savedDoctor.getPassword(), 'd');
+                return ResponseEntity.ok(savedDoctor);
+            }throw new RuntimeException("Senha não informada");
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
@@ -66,7 +68,7 @@ public class DoctorService {
         }
 
         try {
-            userService.deleteByRegisterId(id);
+            userService.deleteByRegisterIdAndUserType(id, 'd');
 
             doctorRepository.deleteById(id);
             return ResponseEntity.ok().build();

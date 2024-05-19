@@ -12,7 +12,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private char user_type;
+    @Column(name = "user_type")
+    private char userType;
 
     @Column(name = "register_id")
     private int registerId;
@@ -26,6 +27,6 @@ public class User {
     public void addUser(int register_id, String password, char user_type) {
         this.setRegisterId(register_id);
         this.setPassword(password);
-        this.setUser_type(user_type);
+        this.setUserType(user_type);
     }
 }

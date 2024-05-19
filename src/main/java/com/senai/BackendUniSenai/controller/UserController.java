@@ -34,12 +34,12 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<User> delete(@PathVariable int id) {
-        return userService.deleteByRegisterId(id);
+        return userService.deleteById(id);
     }
 
     @PostMapping
     public ResponseEntity verifyLogin(@RequestBody User user) {
-        return userService.verifyLogin(user.getEmail(), user.getPassword(), user.getUser_type());
+        return userService.verifyLogin(user.getEmail(), user.getPassword(), user.getUserType());
     }
 
 }

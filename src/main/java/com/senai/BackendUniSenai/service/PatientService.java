@@ -42,10 +42,12 @@ public class PatientService {
             if (response == 1) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Paciente já cadastrado com o CPF informado");
             }
-
-            Patient savedPatient = patientRepository.saveAndFlush(patient);
-            userService.add(savedPatient.getId(), savedPatient.getPassword(), 'p');
-            return ResponseEntity.ok(savedPatient);
+            if (patient.getPassword() != null) {
+                Patient savedPatient = patientRepository.saveAndFlush(patient);
+                userService.add(savedPatient.getId(), savedPatient.getPassword(), 'p');
+                return ResponseEntity.ok(savedPatient);
+            }
+            throw new RuntimeException("Senha não informada");
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
@@ -71,7 +73,7 @@ public class PatientService {
         }
 
         try {
-            userService.deleteByRegisterId(id);
+            userService.deleteByRegisterIdAndUserType(id,'p');
             patientRepository.deleteById(id);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
