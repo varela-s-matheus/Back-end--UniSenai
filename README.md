@@ -30,7 +30,7 @@ https://back-end-unisenai.onrender.com/
 POST /user -- verifyLogin: Dados de login devem ser encaminhados no corpo da requisição:
 ``` 
 {
-  "user_type": "d",
+  "userType": "d",
   "email": "jao@gmail.com",
   "password": "1234"
 }
